@@ -18,10 +18,11 @@ body{
 
         .game-screen__side{
             height: 100%;
-            width: calc(50% - 2px);
+            width: calc(50%);
             position: relative;
             display: inline-block;
             border: 1px solid white;
+            overflow: hidden;
             
             .game-screen__player {
                 background-color: black;
@@ -31,7 +32,6 @@ body{
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                transition: all 1s ease;
             }
             
             .game-screen__drop {
@@ -39,10 +39,10 @@ body{
                 height: 10vh;
                 width: 10vw;
                 margin: 5vw;
+                margin-top: -5vw;
                 position: absolute;
                 top: 0;
                 left: 0;
-                // transition: all 1s ease;
             }
         }
 

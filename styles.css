@@ -16,10 +16,11 @@ body .game-screen {
 }
 body .game-screen .game-screen__side {
   height: 100%;
-  width: calc(50% - 2px);
+  width: calc(50%);
   position: relative;
   display: inline-block;
   border: 1px solid white;
+  overflow: hidden;
 }
 body .game-screen .game-screen__side .game-screen__player {
   background-color: black;
@@ -29,13 +30,13 @@ body .game-screen .game-screen__side .game-screen__player {
   position: absolute;
   bottom: 0;
   left: 0;
-  transition: all 1s ease;
 }
 body .game-screen .game-screen__side .game-screen__drop {
   background-color: black;
   height: 10vh;
   width: 10vw;
   margin: 5vw;
+  margin-top: -5vw;
   position: absolute;
   top: 0;
   left: 0;

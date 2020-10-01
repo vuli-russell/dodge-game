@@ -1,42 +1,70 @@
+@font-face {
+  font-family: neon;
+  src: url("assets/fonts/Neon.ttf");
+}
+@font-face {
+  font-family: neon-future;
+  src: url("assets/fonts/Neon Future.ttf");
+}
 * {
   border: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Quicksand";
 }
 
-body {
-  margin: 10vh 10vw;
-}
 body .game-screen {
   position: relative;
-  background-color: deepskyblue;
+  background-color: #18093b;
   border: 2px solid black;
-  height: 80vh;
-  width: 80vw;
+  height: 100vh;
 }
-body .game-screen .game-screen__side {
+body .game-screen__title {
+  color: white;
+  font-size: 120px;
+  font-weight: 500;
+  text-align: center;
+  font-family: neon-future;
+  margin-top: 40px;
+}
+body .game-screen__button {
+  font-size: 30px;
+  display: block;
+  margin: 40px auto;
+}
+body .game-screen__text {
+  color: white;
+  font-size: 30px;
+  text-align: center;
+}
+body .game-screen__score {
+  position: absolute;
+  color: white;
+  font-size: 40px;
+  padding: 10px;
+}
+body .game-screen__side {
   height: 100%;
-  width: calc(50%);
   position: relative;
   display: inline-block;
   border: 1px solid white;
   overflow: hidden;
 }
-body .game-screen .game-screen__side .game-screen__player {
-  background-color: black;
-  height: 10vh;
-  width: 10vw;
-  margin: 5vw;
+body .game-screen__side .game-screen__player {
+  background-color: white;
+  height: 10%;
+  width: 20%;
+  margin: 20%;
   position: absolute;
   bottom: 0;
   left: 0;
 }
-body .game-screen .game-screen__side .game-screen__drop {
-  background-color: black;
-  height: 10vh;
-  width: 10vw;
-  margin: 5vw;
-  margin-top: -5vw;
+body .game-screen__side .game-screen__drop {
+  background-color: #ff3300;
+  height: 10%;
+  width: 20%;
+  margin: 20%;
+  margin-top: -5%;
   position: absolute;
   top: 0;
   left: 0;

@@ -1,14 +1,16 @@
 //classes
 class gameContainer {
-    constructor() {
+    constructor(width) {
         this.player = null;
         this.drops = [];
         this.element = document.createElement('div');
         this.element.classList.add('game-screen__side');
+        this.element.style.width = `${width}%`;
         gameData.screenElement.append(this.element);
     }
 
     removeOldDrops() {
+        let dropsDeleted = 0;
         this.drops.forEach(drop => {
             if (drop.parentElement.getBoundingClientRect().bottom < drop.element.getBoundingClientRect().top) {
                 //drop is below screen
@@ -16,8 +18,10 @@ class gameContainer {
                 drop.element.remove();
                 //remove object from drops list
                 this.drops.splice(this.drops.indexOf(drop), 1);
+                dropsDeleted++;
             }
         });
+        return dropsDeleted;
     }
 }
 
@@ -34,7 +38,7 @@ class Drop {
         this.element.classList.add('game-screen__drop');
         this.element.style.transition = `all ${gameData.animationDuration}s linear 0s`;
         //if column is 2, push to the right
-        if (this.column === 2) this.element.style.left = '20vw';
+        if (this.column === 2) this.element.style.left = '40%';
         this.parentElement.append(this.element);
     }
 
@@ -48,7 +52,7 @@ class Drop {
         let elementRect = elementToCollide.getBoundingClientRect();
 
         if (dropRect.bottom > elementRect.top && dropRect.top < elementRect.bottom && dropRect.left < elementRect.right && dropRect.right > elementRect.left) {
-            //end game
+            elementToCollide.style.left = window.getComputedStyle(elementToCollide).left;
             gameData.endGame();
         }
     }
@@ -64,22 +68,26 @@ class Player {
     createHTML() {
         this.element = document.createElement('div');
         this.element.classList.add('game-screen__player');
-        this.element.style.transition = `all ${gameData.moveTime}s linear 0s`
+        this.element.style.transition = `all ${gameData.moveTime}s linear 0s`;
         this.parentElement.append(this.element);
     }
 
     move() {
         if (this.column === 1) {
-            this.element.style.left = '20vw';
-            setTimeout(() => {
-                this.column = 2
-            }, this.moveTime * 1000)
+            this.element.style.left = '40%';
+            setTimeout(() => {this.column = 2}, this.moveTime * 1000);
         } else if (this.column === 2) {
-            this.element.style.left = '0vw';
-            setTimeout(() => {
-                this.column = 1
-            }, this.moveTime * 1000)
+            this.element.style.left = '0%';
+            setTimeout(() => {this.column = 1}, this.moveTime * 1000);
         }
+    }
+}
+
+class menuButton {
+    constructor(classes,text,onClick){
+        this.classes = classes;
+        this.text = text;
+        this.onClick = onClick
     }
 }
 
@@ -91,10 +99,11 @@ class Player {
 const gameData = {
 
     screenElement: document.querySelector('.game-screen'),
+
     //populate from start screen when added
 
     //keys to control each section
-    controlKeys: ['ArrowLeft', 'ArrowRight'],
+    controlKeys: ['ArrowLeft','ArrowRight'],
     //time for drop to go from top to bottom of screen - independent of reolution (s)
     timeToDrop: 2,
     //time to move player across screen (s)
@@ -105,20 +114,26 @@ const gameData = {
     dropSpeed: null,
 
     containers: [],
-    players: [],
-    drops: [],
     dropGap: window.innerHeight * 0.15,
     playing: true,
+    score: undefined,
 
     startGame: function () {
+
+        //remove previous html
+        this.screenElement.innerHTML = '';
+
+        //set score to 0;
+        this.score = 0;
+
+        //display score
+        this.scoreElement = this.createText('0','span',['game-screen__score']);
 
         //calculate drop speed
         this.dropSpeed = this.screenElement.clientHeight/(this.timeToDrop/this.animationDuration);
         
-        //create 2 new containers
-        for (let index = 0; index < 2; index++) {
-            this.containers.push(new gameContainer());
-        }
+        //create new containers based on number of assinged control keys
+        this.containers = this.controlKeys.map(() => new gameContainer(100/this.controlKeys.length));
 
         this.containers.forEach((container, index) => {
             container.player = new Player(container.element, 1, this.controlKeys[index]);
@@ -130,16 +145,18 @@ const gameData = {
         });
 
         document.addEventListener('keydown', (e) => {
-            this.containers.forEach(container => {
-                if (e.key === container.player.moveKey) {
-                    container.player.move();
-                }
-            });
-        })
-
+            if(gameData.playing){
+                this.containers.forEach(container => {
+                    if (e.key === container.player.moveKey) {
+                        container.player.move();
+                    }
+                });
+            }
+        });
+        
         gameData.playing = true;
 
-        setTimeout(()=>{this.runGame()},2000);
+        setTimeout(()=>{this.runGame()},1000);
     },
 
     runGame: function () {
@@ -156,7 +173,10 @@ const gameData = {
                     //check collision and end game if player has collided with drop
                     drop.checkCollision(container.player.element)
                 })
-                container.removeOldDrops();
+                //1 point for every drop dodged by all players
+                this.score += container.removeOldDrops()/this.controlKeys.length;
+                //update score
+                this.scoreElement.innerText = this.score;
             })
 
 
@@ -171,14 +191,83 @@ const gameData = {
         }
     },
 
-    endGame: function () {
+    endGame: function() {
         this.playing = false;
+        
+        //some animation??
         //to end game screen
+        this.drawEndGameScreen();
+    },
+
+    drawStartScreen: function(){
+        //remove previous html
+        this.screenElement.innerHTML = '';
+
+        //create heading
+        this.createText('Intersting Game Title','h1',['game-screen__title']);
+
+        //create buttons and add event listeners
+
+        startScreenButtons = [
+            new menuButton(['game-screen__button'],'Start Game',gameData.startGame),
+            new menuButton(['game-screen__button'],'Instructions',gameData.drawInstructionsScreen),
+            new menuButton(['game-screen__button'],'Settings',gameData.drawOptionsScreen)
+        ],
+        
+        this.createButtons(startScreenButtons);
+
+    },
+
+    drawOptionsScreen: function(){
+        //to do
+        alert('this will open options eventually');
+    },
+
+    drawInstructionsScreen: function(){
+        alert('this will open instructions eventually');
+    },
+
+    drawEndGameScreen: function(){
+        this.screenElement.innerHTML = '';
+        
+        //game over message
+        this.createText('Game Over','h1',['game-screen__title']);
+
+        //score
+        this.createText(`Score was ${this.score}`,'p',['game-screen__text']);
+
+
+        //buttons
+        endScreenButtons = [
+            new menuButton(['game-screen__button'],'Play Again',gameData.startGame),
+            new menuButton(['game-screen__button'],'Back to Menu',gameData.drawStartScreen)
+        ];
+
+        this.createButtons(endScreenButtons);
+
+    },
+
+    createText: function(text,tag,classList){
+        let heading = document.createElement(tag);
+        classList.forEach(c => {heading.classList.add(c)});
+        heading.innerText = text;
+        this.screenElement.append(heading);
+        return heading;
+    },
+
+    createButtons: function(buttonsArray){
+        buttonsArray.forEach(button => {
+            this.htmlElement = document.createElement('button');
+            button.classes.forEach(c => {
+                this.htmlElement.classList.add(c)
+            });
+            this.htmlElement.innerText = button.text;
+            this.htmlElement.addEventListener('click',button.onClick.bind(gameData));
+            this.screenElement.append(this.htmlElement);
+        });
     }
 
 };
 
 //show start screen
-
-//on click
-gameData.startGame();
+gameData.drawStartScreen();

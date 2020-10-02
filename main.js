@@ -53,6 +53,7 @@ class Drop {
 
         if (dropRect.bottom > elementRect.top && dropRect.top < elementRect.bottom && dropRect.left < elementRect.right && dropRect.right > elementRect.left) {
             elementToCollide.style.left = window.getComputedStyle(elementToCollide).left;
+            this.element.style.top = window.getComputedStyle(this.element).top;
             gameData.endGame();
         }
     }
@@ -114,6 +115,7 @@ const gameData = {
     dropSpeed: null,
 
     containers: [],
+    //this should be changed depending on the screen size
     dropGap: window.innerHeight * 0.2,
     playing: true,
     score: undefined,

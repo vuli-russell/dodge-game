@@ -114,7 +114,7 @@ const gameData = {
     dropSpeed: null,
 
     containers: [],
-    dropGap: window.innerHeight * 0.15,
+    dropGap: window.innerHeight * 0.2,
     playing: true,
     score: undefined,
 
@@ -196,7 +196,7 @@ const gameData = {
         
         //some animation??
         //to end game screen
-        this.drawEndGameScreen();
+        setTimeout(()=>{this.drawEndGameScreen()},1000);
     },
 
     drawStartScreen: function(){

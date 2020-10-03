@@ -17,16 +17,24 @@ $heading-size: 120px;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Quicksand';
+    transform-style: preserve-3d;
+    perspective-origin: center;
+    perspective: 10000px;
     
 }
   
 body{
+    overflow: hidden;
+    background-color: #18093b;
 
     .game-screen {  
         position: relative;
-        background-color: #18093b;
+        
         border: 2px solid black;
         height: 100vh;
+        margin: auto;
+        transition: all 1s ease 0s;
+        
 
         &__title {
             color: white;
@@ -62,28 +70,36 @@ body{
             height: 100%;
             position: relative;
             display: inline-block;
-            border: 1px solid white;
-            overflow: hidden;
+            border: 1px solid black;
+                    
             
             .game-screen__player {
-                background-color:white;
-                height: 10%;
-                width: 20%;
-                margin: 20%;
+                // height: 10%;
+                // width: 20%;
+                // margin: 20%;
                 position: absolute;
                 bottom: 0;
                 left: 0;
+
+                > * {
+                    background-color: limegreen;
+                    border: 2px solid black;
+                }
             }
             
             .game-screen__drop {
-                background-color: rgb(255, 51, 0);
-                height: 10%;
-                width: 20%;
-                margin: 20%;
-                margin-top: -5%;
+                // height: 10%;
+                // width: 20%;
+                // margin: 20%;
+                // margin-top: -5%;
                 position: absolute;
                 top: 0;
                 left: 0;
+
+                > * {
+                    background-color: red;
+                    border: 2px solid black;
+                }
             }
         }
 

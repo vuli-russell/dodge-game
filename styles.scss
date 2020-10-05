@@ -1,108 +1,97 @@
 @font-face {
-    font-family: neon;
-    src: url('assets/fonts/Neon.ttf');
+  font-family: neon;
+  src: url("assets/fonts/Neon.ttf");
 }
 
 @font-face {
-    font-family: neon-future;
-    src: url('assets/fonts/Neon\ Future.ttf');
+  font-family: neon-future;
+  src: url("assets/fonts/Neon\ Future.ttf");
 }
-
 
 $heading-size: 120px;
 
-
 * {
-    border: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Quicksand';
-    transform-style: preserve-3d;
-    perspective-origin: center;
-    perspective: 10000px;
-    
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand";
+  transform-style: preserve-3d;
+  perspective-origin: center;
+  perspective: 10000px;
 }
-  
-body{
-    overflow: hidden;
-    background-color: #18093b;
 
-    .game-screen {  
-        position: relative;
-        
-        border: 2px solid black;
-        height: 100vh;
-        margin: auto;
-        transition: all 1s ease 0s;
-        
+body {
+  overflow: hidden;
+  background-color: #18093b;
 
-        &__title {
-            color: white;
-            font-size: $heading-size;
-            font-weight: 500;
-            text-align: center;
-            font-family: neon-future;
-            margin-top: 40px;
-        }
+  .game-screen {
+    position: relative;
+    margin: auto;
+    transition: all 1s ease 0s;
 
-        &__button {
-            font-size: 30px;
-            display: block;
-            margin: 40px auto;
-        }
-
-        &__text {
-            color: white;
-            font-size: 30px;
-            text-align: center;
-        }
-
-        &__score{
-            position: absolute;
-            color: white;
-            font-size: 40px;
-            padding: 10px;
-            
-
-        }
-
-        &__side{
-            height: 100%;
-            position: relative;
-            display: inline-block;
-            border: 1px solid black;
-                    
-            
-            .game-screen__player {
-                // height: 10%;
-                // width: 20%;
-                // margin: 20%;
-                position: absolute;
-                bottom: 0;
-                left: 0;
-
-                > * {
-                    background-color: limegreen;
-                    border: 2px solid black;
-                }
-            }
-            
-            .game-screen__drop {
-                // height: 10%;
-                // width: 20%;
-                // margin: 20%;
-                // margin-top: -5%;
-                position: absolute;
-                top: 0;
-                left: 0;
-
-                > * {
-                    background-color: red;
-                    border: 2px solid black;
-                }
-            }
-        }
-
+    &__title {
+      color: white;
+      font-size: $heading-size;
+      font-weight: 500;
+      text-align: center;
+      font-family: neon-future;
+      margin-top: 40px;
     }
-} 
-  
+
+    &__button {
+      font-size: 30px;
+      display: block;
+      margin: 40px auto;
+    }
+
+    &__text {
+      color: white;
+      font-size: 30px;
+      text-align: center;
+      margin: 20px;
+    }
+
+    &__score {
+      position: absolute;
+      color: white;
+      font-size: 40px;
+      padding: 10px;
+    }
+
+    &__side {
+      height: 100%;
+      position: relative;
+      display: inline-block;
+      border: 1px solid white;
+
+      .game-screen__player {
+        bottom: 0;
+        left: 0;
+
+        > * {
+          background-color: limegreen;
+          border: 2px solid black;
+        }
+
+        & .game-screen__explosion {
+          
+          * {
+            background: rgb(255,224,0);
+            background: radial-gradient(circle, rgba(255,224,0,1) 20%, rgba(228,185,54,1) 31%, rgba(255,82,0,1) 52%, rgba(255,0,74,1) 86%);
+            border: 3px solid white;
+          }
+        }
+      }
+
+      .game-screen__drop {
+        top: 0;
+        left: 0;
+
+        > * {
+          background-color: red;
+          border: 2px solid black;
+        }
+      }
+    }
+  }
+}

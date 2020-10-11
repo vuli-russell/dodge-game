@@ -9,6 +9,7 @@
 }
 
 $heading-size: 120px;
+$font-size: 30px;
 
 * {
   border: 0;
@@ -20,78 +21,152 @@ $heading-size: 120px;
   perspective: 10000px;
 }
 
-body {
+html{
+
+  max-width: 100vw;
   overflow: hidden;
-  background-color: #18093b;
 
-  .game-screen {
-    position: relative;
-    margin: auto;
-    transition: all 1s ease 0s;
+  body {
+    overflow: hidden;
+    background-color: #18093b;
+    
 
-    &__title {
-      color: white;
-      font-size: $heading-size;
-      font-weight: 500;
-      text-align: center;
-      font-family: neon-future;
-      margin-top: 40px;
-    }
-
-    &__button {
-      font-size: 30px;
-      display: block;
-      margin: 40px auto;
-    }
-
-    &__text {
-      color: white;
-      font-size: 30px;
-      text-align: center;
-      margin: 20px;
-    }
-
-    &__score {
-      position: absolute;
-      color: white;
-      font-size: 40px;
-      padding: 10px;
-    }
-
-    &__side {
-      height: 100%;
+    .game-screen {
       position: relative;
-      display: inline-block;
-      border: 1px solid white;
+      margin: auto;
+      transition: all 1s ease 0s;
 
-      .game-screen__player {
-        bottom: 0;
-        left: 0;
-
-        > * {
-          background-color: limegreen;
-          border: 2px solid black;
-        }
-
-        & .game-screen__explosion {
-          
-          * {
-            background: rgb(255,224,0);
-            background: radial-gradient(circle, rgba(255,224,0,1) 20%, rgba(228,185,54,1) 31%, rgba(255,82,0,1) 52%, rgba(255,0,74,1) 86%);
-            border: 3px solid white;
-          }
-        }
+      &__title {
+        color: white;
+        font-size: $heading-size;
+        font-weight: 500;
+        text-align: center;
+        font-family: neon-future;
+        margin-top: 40px;
       }
 
-      .game-screen__drop {
-        top: 0;
-        left: 0;
+      &__button {
+        font-size: $font-size;
+        display: block;
+        margin: 40px auto;
+      }
 
-        > * {
-          background-color: red;
-          border: 2px solid black;
+      &__text {
+        color: white;
+        font-size: $font-size;
+        text-align: center;
+        margin: 20px;
+      }
+
+      &__score {
+        position: absolute;
+        color: white;
+        font-size: $font-size;
+        padding: 10px;
+      }
+
+      &__side {
+        height: 100%;
+        position: relative;
+        display: inline-block;
+        border: 1px solid white;
+
+        .game-screen__player {
+          bottom: 0;
+          left: 0;
+
+          > * {
+            background-color: limegreen;
+            border: 2px solid black;
+          }
+
+          & .game-screen__explosion {
+            
+            * {
+              background: rgb(255,224,0);
+              background: radial-gradient(circle, rgba(255,224,0,1) 20%, rgba(228,185,54,1) 31%, rgba(255,82,0,1) 52%, rgba(255,0,74,1) 86%);
+              border: 3px solid white;
+            }
+          }
+        }
+
+        .game-screen__drop {
+          top: 0;
+          left: 0;
+
+          > * {
+            background-color: red;
+            border: 2px solid black;
+          }
         }
       }
     }
   }
 }
+
+@media screen and (max-width: 960px){
+
+
+  $heading-size: 70px;
+  $font-size: 20px;
+
+  body {
+
+    .game-screen {
+      &__title {
+        font-size: $heading-size;
+        margin-top: 40px;
+      }
+
+      &__button {
+        font-size: $font-size;
+        margin: 40px auto;
+      }
+
+      &__text {
+        font-size: $font-size;
+        margin: 20px;
+      }
+
+      &__score {
+        font-size: $font-size;
+        padding: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px){
+
+
+  $heading-size: 40px;
+  $font-size: 20px;
+
+  html{
+    body {
+      .game-screen {
+  
+        &__title {
+          font-size: $heading-size;
+          margin-top: 40px;
+        }
+  
+        &__button {
+          font-size: $font-size;
+          margin: 40px auto;
+        }
+  
+        &__text {
+          font-size: $font-size;
+          margin: 20px;
+        }
+  
+        &__score {
+          font-size: $font-size;
+          padding: 10px;
+        }
+      }
+    }  
+  }
+}
+

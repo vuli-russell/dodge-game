@@ -305,11 +305,11 @@ const gameData = {
         
         this.containers.forEach(container => {
             
-            container.element.addEventListener('click', () => {
+            container.element.addEventListener('touchstart', () => {
                 if(gameData.playing){
                     container.player.move();
                 }
-            });
+            },{passive: true});
         });
         
         this.playing = true;

@@ -16,16 +16,20 @@
   perspective: 10000px;
 }
 
-body {
+html {
+  max-width: 100vw;
+  overflow: hidden;
+}
+html body {
   overflow: hidden;
   background-color: #18093b;
 }
-body .game-screen {
+html body .game-screen {
   position: relative;
   margin: auto;
   transition: all 1s ease 0s;
 }
-body .game-screen__title {
+html body .game-screen__title {
   color: white;
   font-size: 120px;
   font-weight: 500;
@@ -33,47 +37,84 @@ body .game-screen__title {
   font-family: neon-future;
   margin-top: 40px;
 }
-body .game-screen__button {
+html body .game-screen__button {
   font-size: 30px;
   display: block;
   margin: 40px auto;
 }
-body .game-screen__text {
+html body .game-screen__text {
   color: white;
   font-size: 30px;
   text-align: center;
   margin: 20px;
 }
-body .game-screen__score {
+html body .game-screen__score {
   position: absolute;
   color: white;
-  font-size: 40px;
+  font-size: 30px;
   padding: 10px;
 }
-body .game-screen__side {
+html body .game-screen__side {
   height: 100%;
   position: relative;
   display: inline-block;
   border: 1px solid white;
 }
-body .game-screen__side .game-screen__player {
+html body .game-screen__side .game-screen__player {
   bottom: 0;
   left: 0;
 }
-body .game-screen__side .game-screen__player > * {
+html body .game-screen__side .game-screen__player > * {
   background-color: limegreen;
   border: 2px solid black;
 }
-body .game-screen__side .game-screen__player .game-screen__explosion * {
+html body .game-screen__side .game-screen__player .game-screen__explosion * {
   background: #ffe000;
   background: radial-gradient(circle, #ffe000 20%, #e4b936 31%, #ff5200 52%, #ff004a 86%);
   border: 3px solid white;
 }
-body .game-screen__side .game-screen__drop {
+html body .game-screen__side .game-screen__drop {
   top: 0;
   left: 0;
 }
-body .game-screen__side .game-screen__drop > * {
+html body .game-screen__side .game-screen__drop > * {
   background-color: red;
   border: 2px solid black;
+}
+
+@media screen and (max-width: 960px) {
+  body .game-screen__title {
+    font-size: 70px;
+    margin-top: 40px;
+  }
+  body .game-screen__button {
+    font-size: 20px;
+    margin: 40px auto;
+  }
+  body .game-screen__text {
+    font-size: 20px;
+    margin: 20px;
+  }
+  body .game-screen__score {
+    font-size: 20px;
+    padding: 10px;
+  }
+}
+@media screen and (max-width: 480px) {
+  html body .game-screen__title {
+    font-size: 40px;
+    margin-top: 40px;
+  }
+  html body .game-screen__button {
+    font-size: 20px;
+    margin: 40px auto;
+  }
+  html body .game-screen__text {
+    font-size: 20px;
+    margin: 20px;
+  }
+  html body .game-screen__score {
+    font-size: 20px;
+    padding: 10px;
+  }
 }

@@ -21,7 +21,6 @@ html {
   overflow: hidden;
 }
 html body {
-  overflow: hidden;
   background-color: #18093b;
 }
 html body .game-screen {
@@ -84,7 +83,7 @@ html body .game-screen__side .game-screen__drop > * {
 
 @media screen and (max-width: 960px) {
   body .game-screen__title {
-    font-size: 70px;
+    font-size: 50px;
     margin-top: 40px;
   }
   body .game-screen__button {
@@ -106,15 +105,15 @@ html body .game-screen__side .game-screen__drop > * {
     margin-top: 40px;
   }
   html body .game-screen__button {
-    font-size: 20px;
+    font-size: 15px;
     margin: 40px auto;
   }
   html body .game-screen__text {
-    font-size: 20px;
+    font-size: 15px;
     margin: 20px;
   }
   html body .game-screen__score {
-    font-size: 20px;
+    font-size: 15px;
     padding: 10px;
   }
 }

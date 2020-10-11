@@ -27,7 +27,6 @@ html{
   overflow: hidden;
 
   body {
-    overflow: hidden;
     background-color: #18093b;
     
 
@@ -107,7 +106,7 @@ html{
 @media screen and (max-width: 960px){
 
 
-  $heading-size: 70px;
+  $heading-size: 50px;
   $font-size: 20px;
 
   body {
@@ -140,7 +139,7 @@ html{
 
 
   $heading-size: 40px;
-  $font-size: 20px;
+  $font-size: 15px;
 
   html{
     body {

@@ -244,6 +244,8 @@ const gameData = {
 
     startGame: function () {
 
+        document.querySelector('html').style.overflow = 'hidden';
+
         this.playerWidth = (this.gameScreenWidth/(this.controlKeys.length))*0.15
         this.playerHeight = this.playerWidth*2
         this.dropWidth = this.playerWidth/2
@@ -399,7 +401,7 @@ const gameData = {
         this.screenElement.innerHTML = '';
 
         //create heading
-        this.createText('Intersting Game Title','h1',['game-screen__title']);
+        this.createText('Dodge Game','h1',['game-screen__title']);
 
         //create buttons and add event listeners
 
@@ -420,6 +422,7 @@ const gameData = {
 
     drawInstructionsScreen: function(){
         this.screenElement.innerHTML = '';
+        document.querySelector('html').style.overflow = 'auto';
 
         this.createText('How To Play','h1',['game-screen__title']);
 
